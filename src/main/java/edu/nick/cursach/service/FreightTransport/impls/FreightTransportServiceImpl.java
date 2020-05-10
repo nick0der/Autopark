@@ -1,6 +1,5 @@
 package edu.nick.cursach.service.FreightTransport.impls;
 
-import edu.nick.cursach.dao.FreightTransport.impls.FreightTransportDaoImplFake;
 import edu.nick.cursach.repository.FreightTransportRepository;
 import edu.nick.cursach.model.FreightTransport;
 import edu.nick.cursach.service.FreightTransport.interfaces.IFreightTransportService;
@@ -15,16 +14,7 @@ import java.util.List;
 public class FreightTransportServiceImpl implements IFreightTransportService {
 
     @Autowired
-    FreightTransportDaoImplFake dao;
-
-    @Autowired
     FreightTransportRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<FreightTransport> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public FreightTransport save(FreightTransport freightTransport) {

@@ -1,13 +1,11 @@
 package edu.nick.cursach.service.Transportation.impls;
 
-import edu.nick.cursach.dao.Transportation.impls.TransportationDaoImplFake;
 import edu.nick.cursach.repository.TransportationRepository;
 import edu.nick.cursach.model.Transportation;
 import edu.nick.cursach.service.Transportation.interfaces.ITransportationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +13,7 @@ import java.util.List;
 public class TransportationServiceImpl implements ITransportationService {
 
     @Autowired
-    TransportationDaoImplFake dao;
-
-    @Autowired
     TransportationRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<Transportation> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public Transportation save(Transportation transportation) {

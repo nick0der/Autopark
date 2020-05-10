@@ -1,13 +1,11 @@
 package edu.nick.cursach.service.Bus.impls;
 
-import edu.nick.cursach.dao.bus.impls.BusDaoImplFake;
 import edu.nick.cursach.repository.BusRepository;
 import edu.nick.cursach.model.Bus;
 import edu.nick.cursach.service.Bus.interfaces.IBusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +13,7 @@ import java.util.List;
 public class BusServiceImpl implements IBusService {
 
     @Autowired
-    BusDaoImplFake dao;
-
-    @Autowired
     BusRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<Bus> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public Bus save(Bus bus) {

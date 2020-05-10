@@ -1,6 +1,5 @@
 package edu.nick.cursach.service.Kilometrage.impls;
 
-import edu.nick.cursach.dao.Kilometrage.impls.KilometrageDaoImplFake;
 import edu.nick.cursach.repository.KilometrageRepository;
 import edu.nick.cursach.model.Kilometrage;
 import edu.nick.cursach.service.Kilometrage.interfaces.IKilometrageService;
@@ -15,16 +14,7 @@ import java.util.List;
 public class KilometrageServiceImpl implements IKilometrageService {
 
     @Autowired
-    KilometrageDaoImplFake dao;
-
-    @Autowired
     KilometrageRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<Kilometrage> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public Kilometrage save(Kilometrage kilometrage) {

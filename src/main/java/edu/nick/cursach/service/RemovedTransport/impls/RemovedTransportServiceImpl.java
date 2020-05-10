@@ -1,6 +1,5 @@
 package edu.nick.cursach.service.RemovedTransport.impls;
 
-import edu.nick.cursach.dao.RemovedTransport.impls.RemovedTransportDaoImplFake;
 import edu.nick.cursach.repository.RemovedTransportRepository;
 import edu.nick.cursach.model.RemovedTransport;
 import edu.nick.cursach.service.RemovedTransport.interfaces.IRemovedTransportService;
@@ -15,16 +14,7 @@ import java.util.List;
 public class RemovedTransportServiceImpl implements IRemovedTransportService {
 
     @Autowired
-    RemovedTransportDaoImplFake dao;
-
-    @Autowired
     RemovedTransportRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<RemovedTransport> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public RemovedTransport save(RemovedTransport removedTransport) {

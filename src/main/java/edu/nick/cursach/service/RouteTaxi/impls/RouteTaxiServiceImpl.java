@@ -1,6 +1,5 @@
 package edu.nick.cursach.service.RouteTaxi.impls;
 
-import edu.nick.cursach.dao.RouteTaxi.impls.RouteTaxiDaoImplFake;
 import edu.nick.cursach.repository.RouteTaxiRepository;
 import edu.nick.cursach.model.RouteTaxi;
 import edu.nick.cursach.service.RouteTaxi.interfaces.IRouteTaxiService;
@@ -15,16 +14,7 @@ import java.util.List;
 public class RouteTaxiServiceImpl implements IRouteTaxiService {
 
     @Autowired
-    RouteTaxiDaoImplFake dao;
-
-    @Autowired
     RouteTaxiRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<RouteTaxi> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public RouteTaxi save(RouteTaxi routeTaxi) {

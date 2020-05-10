@@ -1,6 +1,5 @@
 package edu.nick.cursach.service.Taxi.impls;
 
-import edu.nick.cursach.dao.Taxi.impls.TaxiDaoImplFake;
 import edu.nick.cursach.repository.TaxiRepository;
 import edu.nick.cursach.model.Taxi;
 import edu.nick.cursach.service.Taxi.interfaces.ITaxiService;
@@ -15,16 +14,7 @@ import java.util.List;
 public class TaxiServiceImpl implements ITaxiService {
 
     @Autowired
-    TaxiDaoImplFake dao;
-
-    @Autowired
     TaxiRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<Taxi> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public Taxi save(Taxi taxi) {

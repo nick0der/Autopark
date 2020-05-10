@@ -1,13 +1,11 @@
 package edu.nick.cursach.service.StorageObj.impls;
 
-import edu.nick.cursach.dao.StorageObj.impls.StorageObjDaoImplFake;
 import edu.nick.cursach.repository.StorageObjRepository;
 import edu.nick.cursach.model.StorageObj;
 import edu.nick.cursach.service.StorageObj.interfaces.IStorageObjService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +13,7 @@ import java.util.List;
 public class StorageObjServiceImpl implements IStorageObjService {
 
     @Autowired
-    StorageObjDaoImplFake dao;
-
-    @Autowired
     StorageObjRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<StorageObj> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public StorageObj save(StorageObj storageObj) {

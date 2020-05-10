@@ -1,13 +1,11 @@
 package edu.nick.cursach.service.Route.impls;
 
-import edu.nick.cursach.dao.Route.impls.RouteDaoImplFake;
 import edu.nick.cursach.repository.RouteRepository;
 import edu.nick.cursach.model.Route;
 import edu.nick.cursach.service.Route.interfaces.IRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +13,7 @@ import java.util.List;
 public class RouteServiceImpl implements IRouteService {
 
     @Autowired
-    RouteDaoImplFake dao;
-
-    @Autowired
     RouteRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<Route> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public Route save(Route route) {

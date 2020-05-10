@@ -1,13 +1,11 @@
 package edu.nick.cursach.service.AddedTransport.impls;
 
-import edu.nick.cursach.dao.AddedTransport.impls.AddedTransportDaoImplFake;
 import edu.nick.cursach.repository.AddedTransportRepository;
 import edu.nick.cursach.model.AddedTransport;
 import edu.nick.cursach.service.AddedTransport.interfaces.IAddedTransportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +13,7 @@ import java.util.List;
 public class AddedTransportServiceImpl implements IAddedTransportService {
 
     @Autowired
-    AddedTransportDaoImplFake dao;
-
-    @Autowired
     AddedTransportRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<AddedTransport> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public AddedTransport save(AddedTransport addedTransport) {

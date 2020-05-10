@@ -1,13 +1,11 @@
 package edu.nick.cursach.service.Chief.impls;
 
-import edu.nick.cursach.dao.Chief.impls.ChiefDaoImplFake;
 import edu.nick.cursach.repository.ChiefRepository;
 import edu.nick.cursach.model.Chief;
 import edu.nick.cursach.service.Chief.interfaces.IChiefService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +13,7 @@ import java.util.List;
 public class ChiefServiceImpl implements IChiefService {
 
     @Autowired
-    ChiefDaoImplFake dao;
-
-    @Autowired
     ChiefRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<Chief> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public Chief save(Chief chief) {

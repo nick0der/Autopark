@@ -1,13 +1,11 @@
 package edu.nick.cursach.service.WorkingTeam.impls;
 
-import edu.nick.cursach.dao.WorkingTeam.impls.WorkingTeamDaoImplFake;
 import edu.nick.cursach.repository.WorkingTeamRepository;
 import edu.nick.cursach.model.WorkingTeam;
 import edu.nick.cursach.service.WorkingTeam.interfaces.IWorkingTeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +13,7 @@ import java.util.List;
 public class WorkingTeamServiceImpl implements IWorkingTeamService {
 
     @Autowired
-    WorkingTeamDaoImplFake dao;
-
-    @Autowired
     WorkingTeamRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<WorkingTeam> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public WorkingTeam save(WorkingTeam workingTeam) {

@@ -1,6 +1,5 @@
 package edu.nick.cursach.service.Driver.impls;
 
-import edu.nick.cursach.dao.Driver.impls.DriverDaoImplFake;
 import edu.nick.cursach.repository.DriverRepository;
 import edu.nick.cursach.model.Driver;
 import edu.nick.cursach.service.Driver.interfaces.IDriverService;
@@ -15,16 +14,7 @@ import java.util.List;
 public class DriverServiceImpl implements IDriverService {
 
     @Autowired
-    DriverDaoImplFake dao;
-
-    @Autowired
     DriverRepository repository;
-
-    @PostConstruct
-    void init(){
-//        List<Driver> list = dao.getAll();
-//        repository.saveAll(list);
-    }
 
     @Override
     public Driver save(Driver driver) {
