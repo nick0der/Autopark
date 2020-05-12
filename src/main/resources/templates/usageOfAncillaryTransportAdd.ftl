@@ -7,7 +7,7 @@
 </head>
 <body>
 <form name="usageOfAncillaryTransport" action="" method="POST">
-    Date used:<@spring.formInput "usageOfAncillaryTransportForm.dateUsed" "" "date"/>
+    Date used:<@spring.formInput "usageOfAncillaryTransportForm.dateUsed" "required" "date"/>
     <br>
     Transport:<@spring.formSingleSelect "usageOfAncillaryTransportForm.ancillaryTransport", mavs, ""/>
     <br>

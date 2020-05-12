@@ -9,11 +9,24 @@
 <body>
 <h3>Driver List</h3>
 <div>
+    <fieldset>
+        <legend>Find driver</legend>
+        <form name="search" action="" method="POST">
+            Last name:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
             <th>First Name</th>
-            <th>Last Name</th>
+            <th>Last Name
+                <a href="/web/driver/list/sorted/acs" type="button">↓</a>
+                <a href="/web/driver/list/sorted/desc" type="button">↑</a>
+            </th>
             <th>Patronymic</th>
             <th>Transport</th>
             <th>Salary</th>
@@ -30,12 +43,12 @@
                 <td>${(driver.transport.getBrandAndTrackNumber())!"null"}</td>
                 <td>${driver.salary}</td>
                 <td>${driver.experience}</td>
-                <td><a href="edit/${driver.id}"><button>Edit</button></a></td>
-                <td><a href="delete/${driver.id}"><button>Delete</button></a></td>
+                <td><a href="/web/driver/edit/${driver.id}"><button>Edit</button></a></td>
+                <td><a href="/web/driver/delete/${driver.id}"><button>Delete</button></a></td>
             </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/driver/create"><button>Create</button></a>
 </div>
 </body>
 </html>

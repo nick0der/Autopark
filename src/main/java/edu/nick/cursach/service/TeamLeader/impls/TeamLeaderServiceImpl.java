@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeamLeaderServiceImpl implements ITeamLeaderService {
@@ -43,5 +46,18 @@ public class TeamLeaderServiceImpl implements ITeamLeaderService {
         TeamLeader teamLeader = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return teamLeader;
+    }
+
+    public List<TeamLeader> search(String word) {
+        List<TeamLeader> found = this.getAll().stream()
+                .filter(teamLeader -> teamLeader.getLastName().toUpperCase().contains(word.toUpperCase()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<TeamLeader> sortedByLastName(List<TeamLeader> list, String order) {
+        list.sort(Comparator.comparing(TeamLeader::getLastName));
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

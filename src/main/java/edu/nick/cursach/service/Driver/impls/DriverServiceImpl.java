@@ -6,9 +6,11 @@ import edu.nick.cursach.service.Driver.interfaces.IDriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DriverServiceImpl implements IDriverService {
@@ -44,5 +46,19 @@ public class DriverServiceImpl implements IDriverService {
         Driver driver = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return driver;
+    }
+
+    public List<Driver> search(String word) {
+        List<Driver> found = this.getAll().stream()
+                .filter(chief -> chief.getLastName().toUpperCase().contains(word.toUpperCase()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<Driver> sortedByLastName(List<Driver> list, String order) {
+
+        list.sort(Comparator.comparing(Driver::getLastName));
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

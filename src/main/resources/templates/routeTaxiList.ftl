@@ -9,10 +9,23 @@
 <body>
 <h3>Route Taxi List</h3>
 <div>
+    <fieldset>
+        <legend>Find route taxi</legend>
+        <form name="search" action="" method="POST">
+            Brand:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Brand</th>
+            <th>Brand
+                <a href="/web/routeTaxi/list/sorted/acs" type="button">↓</a>
+                <a href="/web/routeTaxi/list/sorted/desc" type="button">↑</a>
+            </th>
             <th>Seating Capacity</th>
             <th>№</th>
             <th>Route</th>
@@ -30,12 +43,12 @@
             <td> ${(routeTaxi.route.getFullTitle())!"null"}</td>
             <td> ${(routeTaxi.storageObj.getNumber())!"null"}</td>
             <td> ${(routeTaxi.trackNumber)!"null"}</td>
-            <td><a href="edit/${routeTaxi.id}"><button>Edit</button></a></td>
-            <td><a href="delete/${routeTaxi.id}"><button>Delete</button></a></td>
+            <td><a href="/web/routeTaxi/edit/${routeTaxi.id}"><button>Edit</button></a></td>
+            <td><a href="/web/routeTaxi/delete/${routeTaxi.id}"><button>Delete</button></a></td>
         </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/routeTaxi/create"><button>Create</button></a>
 </div>
 </body>
 </html>

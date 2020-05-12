@@ -34,6 +34,10 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -47,17 +51,12 @@
             </exclusions>
         </dependency>
 
-
-
-
-
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>5.2.6.RELEASE</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
@@ -66,7 +65,6 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-
 
 
         <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->

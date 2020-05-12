@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsageOfAncillaryTransportServiceImpl implements IUsageOfAncillaryTransportService {
@@ -43,5 +46,18 @@ public class UsageOfAncillaryTransportServiceImpl implements IUsageOfAncillaryTr
         UsageOfAncillaryTransport usageOfAncillaryTransport = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return usageOfAncillaryTransport;
+    }
+
+    public List<UsageOfAncillaryTransport> search(String word) {
+        List<UsageOfAncillaryTransport> found = this.getAll().stream()
+                .filter(usageOfAncillaryTransport -> usageOfAncillaryTransport.getAncillaryTransport().getBrand().toUpperCase().contains(word.toUpperCase()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<UsageOfAncillaryTransport> sortedByDate(List<UsageOfAncillaryTransport> list, String order) {
+        list.sort(Comparator.comparing(UsageOfAncillaryTransport::getDateUsed));
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

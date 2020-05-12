@@ -9,10 +9,23 @@
 <body>
 <h3>Kilometrage List</h3>
 <div>
+    <fieldset>
+        <legend>Find kilometrage</legend>
+        <form name="search" action="" method="POST">
+            Transport:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Date Recorded</th>
+            <th>Date Recorded
+                <a href="/web/kilometrage/list/sorted/acs" type="button">↓</a>
+                <a href="/web/kilometrage/list/sorted/desc" type="button">↑</a>
+            </th>
             <th>Transport</th>
             <th>Kilometers</th>
             <th>Edit</th>
@@ -24,12 +37,12 @@
             <td>${kilometrage.dateRecorded}</td>
             <td>${(kilometrage.transport.getBrandAndTrackNumber())!"null"}</td>
             <td>${kilometrage.kilometers}</td>
-            <td><a href="edit/${kilometrage.id}"><button>Edit</button></a></td>
-            <td><a href="delete/${kilometrage.id}"><button>Delete</button></a></td>
+            <td><a href="/web/kilometrage/edit/${kilometrage.id}"><button>Edit</button></a></td>
+            <td><a href="/web/kilometrage/delete/${kilometrage.id}"><button>Delete</button></a></td>
         </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/kilometrage/create"><button>Create</button></a>
 </div>
 </body>
 </html>

@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ChiefServiceImpl implements IChiefService {
@@ -43,5 +46,19 @@ public class ChiefServiceImpl implements IChiefService {
         Chief chief = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return chief;
+    }
+
+    public List<Chief> search(String word) {
+        List<Chief> found = this.getAll().stream()
+                .filter(chief -> chief.getLastName().toUpperCase().contains(word.toUpperCase()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<Chief> sortedByLastName(List<Chief> list, String order) {
+
+        list.sort(Comparator.comparing(Chief::getLastName));
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

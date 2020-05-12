@@ -1,8 +1,7 @@
 package edu.nick.cursach.controller.web;
 
-import edu.nick.cursach.form.AddedTransportForm;
 import edu.nick.cursach.form.AncillaryTransportForm;
-import edu.nick.cursach.model.AddedTransport;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.AncillaryTransport;
 import edu.nick.cursach.model.StorageObj;
 import edu.nick.cursach.service.AncillaryTransport.impls.AncillaryTransportServiceImpl;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,10 +25,45 @@ public class AncillaryTransportWEBController {
     @Autowired
     AncillaryTransportServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("ancillaryTransports", service.getAll());
         return "ancillaryTransportList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<AncillaryTransport> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("ancillaryTransports", list);
+        return "ancillaryTransportList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order){
+
+        List<AncillaryTransport> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<AncillaryTransport> sortedList = service.sortedByBrand(list, order);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("ancillaryTransports", sortedList);
+        return "ancillaryTransportList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm, @PathVariable("order") String order){
+        searchWord = searchForm.getString();
+        List<AncillaryTransport> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/ancillaryTransport/list" : "ancillaryTransportList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("ancillaryTransports", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")

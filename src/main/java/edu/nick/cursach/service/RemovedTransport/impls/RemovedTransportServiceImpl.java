@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RemovedTransportServiceImpl implements IRemovedTransportService {
@@ -44,5 +47,19 @@ public class RemovedTransportServiceImpl implements IRemovedTransportService {
         RemovedTransport removedTransport = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return removedTransport;
+    }
+
+    public List<RemovedTransport> search(String word) {
+        List<RemovedTransport> found = this.getAll().stream()
+                .filter(removedTransport -> removedTransport.getBrand().toUpperCase().contains(word.toUpperCase()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<RemovedTransport> sortedByDate(List<RemovedTransport> list, String order) {
+
+        list.sort(Comparator.comparing(RemovedTransport::getDateRemoved));
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

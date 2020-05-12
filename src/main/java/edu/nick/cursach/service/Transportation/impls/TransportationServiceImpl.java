@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TransportationServiceImpl implements ITransportationService {
@@ -43,5 +46,19 @@ public class TransportationServiceImpl implements ITransportationService {
         Transportation transportation = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return transportation;
+    }
+
+    public List<Transportation> search(String word) {
+        List<Transportation> found = this.getAll().stream()
+                .filter(transportation -> transportation.getFreightTransport().getBrand().toUpperCase().contains(word.toUpperCase()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<Transportation> sortedByDate(List<Transportation> list, String order) {
+
+        list.sort(Comparator.comparing(Transportation::getDateTransported));
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

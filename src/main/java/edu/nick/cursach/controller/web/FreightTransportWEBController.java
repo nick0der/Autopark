@@ -1,6 +1,7 @@
 package edu.nick.cursach.controller.web;
 
 import edu.nick.cursach.form.FreightTransportForm;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.FreightTransport;
 import edu.nick.cursach.model.StorageObj;
 import edu.nick.cursach.service.FreightTransport.impls.FreightTransportServiceImpl;
@@ -26,10 +27,45 @@ public class FreightTransportWEBController {
     @Autowired
     FreightTransportServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("freightTransports", service.getAll());
         return "freightTransportList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<FreightTransport> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("freightTransports", list);
+        return "freightTransportList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order){
+
+        List<FreightTransport> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<FreightTransport> sortedList = service.sortedByBrand(list, order);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("freightTransports", sortedList);
+        return "freightTransportList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm, @PathVariable("order") String order){
+        searchWord = searchForm.getString();
+        List<FreightTransport> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/freightTransport/list" : "freightTransportList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("freightTransports", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")

@@ -1,6 +1,7 @@
 package edu.nick.cursach.controller.web;
 
 import edu.nick.cursach.form.KilometrageForm;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.Kilometrage;
 import edu.nick.cursach.model.Transport;
 import edu.nick.cursach.service.Kilometrage.impls.KilometrageServiceImpl;
@@ -25,10 +26,45 @@ public class KilometrageWEBController {
     @Autowired
     KilometrageServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("kilometrages", service.getAll());
         return "kilometrageList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<Kilometrage> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("kilometrages", list);
+        return "kilometrageList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order){
+
+        List<Kilometrage> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<Kilometrage> sortedList = service.sortedByDate(list, order);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("kilometrages", sortedList);
+        return "kilometrageList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm, @PathVariable("order") String order){
+        searchWord = searchForm.getString();
+        List<Kilometrage> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/kilometrage/list" : "kilometrageList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("kilometrages", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")

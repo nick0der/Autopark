@@ -9,10 +9,23 @@
 <body>
 <h3>Ancillary Transport List</h3>
 <div>
+    <fieldset>
+        <legend>Find ancillary transport</legend>
+        <form name="search" action="" method="POST">
+            Brand:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Brand</th>
+            <th>Brand
+                <a href="/web/ancillaryTransport/list/sorted/acs" type="button">↓</a>
+                <a href="/web/ancillaryTransport/list/sorted/desc" type="button">↑</a>
+            </th>
             <th>Mission</th>
             <th>Storage Object</th>
             <th>Track Number</th>
@@ -27,12 +40,12 @@
             <td>${(ancillaryTransport.storageObj.getNumber())!"null"}</td>
             <td>${(ancillaryTransport.trackNumber)!"null"}</td>
 
-            <td><a href="edit/${ancillaryTransport.id}"><button>Edit</button></a></td>
-            <td><a href="delete/${ancillaryTransport.id}"><button>Delete</button></a></td>
+            <td><a href="/web/ancillaryTransport/edit/${ancillaryTransport.id}"><button>Edit</button></a></td>
+            <td><a href="/web/ancillaryTransport/delete/${ancillaryTransport.id}"><button>Delete</button></a></td>
         </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/ancillaryTransport/create"><button>Create</button></a>
 </div>
 </body>
 </html>

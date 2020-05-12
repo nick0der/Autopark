@@ -9,10 +9,23 @@
 <body>
 <h3>Repair List</h3>
 <div>
+    <fieldset>
+        <legend>Find repair</legend>
+        <form name="search" action="" method="POST">
+            Transport:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Date Repaired</th>
+            <th>Date Repaired
+                <a href="/web/repair/list/sorted/acs" type="button">↓</a>
+                <a href="/web/repair/list/sorted/desc" type="button">↑</a>
+            </th>
             <th>Transport</th>
             <th>Working Team</th>
             <th>Cost</th>
@@ -34,12 +47,12 @@
             <td>${repair.transmissions}</td>
             <td>${repair.bridges}</td>
             <td>${repair.chassis}</td>
-            <td><a href="edit/${repair.id}"><button>Edit</button></a></td>
-            <td><a href="delete/${repair.id}"><button>Delete</button></a></td>
+            <td><a href="/web/repair/edit/${repair.id}"><button>Edit</button></a></td>
+            <td><a href="/web/repair/delete/${repair.id}"><button>Delete</button></a></td>
         </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/repair/create"><button>Create</button></a>
 </div>
 </body>
 </html>

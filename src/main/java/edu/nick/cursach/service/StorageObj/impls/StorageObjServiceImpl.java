@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StorageObjServiceImpl implements IStorageObjService {
@@ -43,5 +46,27 @@ public class StorageObjServiceImpl implements IStorageObjService {
         StorageObj storageObj = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return storageObj;
+    }
+
+    public List<StorageObj> search(Integer word) {
+        if ((word == 0)||(word == null)) {
+            return this.getAll();
+        }
+        List<StorageObj> found = this.getAll().stream()
+                .filter(storageObj -> Integer.toString(storageObj.getNumber()).contains(word.toString()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<StorageObj> sortedByNumber(List<StorageObj> list, String order) {
+        Collections.sort(list, (o1, o2) -> {
+                    if (o1.getNumber() == o2.getNumber()) {
+                        return 0;
+                    } else if (o1.getNumber() < o2.getNumber()) {
+                        return -1;
+                    }
+                    return 1; });
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

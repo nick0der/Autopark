@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RepairServiceImpl implements IRepairService {
@@ -43,5 +46,19 @@ public class RepairServiceImpl implements IRepairService {
         Repair repair = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return repair;
+    }
+
+    public List<Repair> search(String word) {
+        List<Repair> found = this.getAll().stream()
+                .filter(repair -> repair.getTransport().getBrand().toUpperCase().contains(word.toUpperCase()))
+                .collect(Collectors.toList());
+        return found;
+    }
+
+    public List<Repair> sortedByDate(List<Repair> list, String order) {
+
+        list.sort(Comparator.comparing(Repair::getDateRepaired));
+        if (order.contains("desc")) { Collections.reverse(list); }
+        return list;
     }
 }

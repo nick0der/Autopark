@@ -1,6 +1,7 @@
 package edu.nick.cursach.controller.web;
 
 import edu.nick.cursach.form.BusForm;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.Bus;
 import edu.nick.cursach.model.Route;
 import edu.nick.cursach.model.StorageObj;
@@ -31,10 +32,45 @@ public class BusWEBController {
     @Autowired
     BusServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("buses", service.getAll());
         return "busList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<Bus> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("buses", list);
+        return "busList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order){
+
+        List<Bus> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<Bus> sortedList = service.sortedByBrand(list, order);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("buses", sortedList);
+        return "busList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm, @PathVariable("order") String order){
+        searchWord = searchForm.getString();
+        List<Bus> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/bus/list" : "busList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("buses", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")

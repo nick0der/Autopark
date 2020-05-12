@@ -9,11 +9,27 @@
 <body>
 <h3>Route List</h3>
 <div>
+    <fieldset>
+        <legend>Find route</legend>
+        <form name="search" action="" method="POST">
+            Route:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Start</th>
-            <th>Finish</th>
+            <th>Start
+                <a href="/web/route/list/sorted/start/acs" type="button">↓</a>
+                <a href="/web/route/list/sorted/start/desc" type="button">↑</a>
+            </th>
+            <th>Finish
+                <a href="/web/route/list/sorted/finish/acs" type="button">↓</a>
+                <a href="/web/route/list/sorted/finish/desc" type="button">↑</a>
+            </th>
             <th>Distance</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -24,12 +40,12 @@
             <td>${route.start}</td>
             <td>${route.finish}</td>
             <td>${route.distance}</td>
-            <td><a href="edit/${route.id}"><button>Edit</button></a></td>
-            <td><a href="delete/${route.id}"><button>Delete</button></a></td>
+            <td><a href="/web/route/edit/${route.id}"><button>Edit</button></a></td>
+            <td><a href="/web/route/delete/${route.id}"><button>Delete</button></a></td>
         </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/route/create"><button>Create</button></a>
 </div>
 </body>
 </html>

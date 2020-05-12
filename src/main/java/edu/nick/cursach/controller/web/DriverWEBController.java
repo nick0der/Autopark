@@ -1,16 +1,10 @@
 package edu.nick.cursach.controller.web;
 
 import edu.nick.cursach.form.DriverForm;
-import edu.nick.cursach.model.AncillaryTransport;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.Driver;
-import edu.nick.cursach.model.FreightTransport;
 import edu.nick.cursach.model.Transport;
-import edu.nick.cursach.service.AncillaryTransport.impls.AncillaryTransportServiceImpl;
-import edu.nick.cursach.service.Bus.impls.BusServiceImpl;
 import edu.nick.cursach.service.Driver.impls.DriverServiceImpl;
-import edu.nick.cursach.service.FreightTransport.impls.FreightTransportServiceImpl;
-import edu.nick.cursach.service.RouteTaxi.impls.RouteTaxiServiceImpl;
-import edu.nick.cursach.service.Taxi.impls.TaxiServiceImpl;
 import edu.nick.cursach.service.Transport.impls.TransportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,10 +26,45 @@ public class DriverWEBController {
     @Autowired
     DriverServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("drivers", service.getAll());
         return "driverList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<Driver> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("drivers", list);
+        return "driverList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order){
+
+        List<Driver> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<Driver> sortedList = service.sortedByLastName(list, order);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("drivers", sortedList);
+        return "driverList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm, @PathVariable("order") String order){
+        searchWord = searchForm.getString();
+        List<Driver> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/driver/list" : "driverList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("drivers", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")

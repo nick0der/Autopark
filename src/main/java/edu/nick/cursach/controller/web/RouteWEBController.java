@@ -1,6 +1,7 @@
 package edu.nick.cursach.controller.web;
 
 import edu.nick.cursach.form.RouteForm;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.Route;
 import edu.nick.cursach.service.Route.impls.RouteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,46 @@ public class RouteWEBController {
     @Autowired
     RouteServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("routes", service.getAll());
         return "routeList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<Route> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("routes", list);
+        return "routeList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{point}/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order,
+                     @PathVariable("point") String point){
+
+        List<Route> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<Route> sortedList = service.sortedByPoint(list, order, point);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("routes", sortedList);
+        return "routeList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{point}/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<Route> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/route/list" : "routeList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("routes", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")

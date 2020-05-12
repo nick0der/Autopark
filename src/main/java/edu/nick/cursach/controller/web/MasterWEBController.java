@@ -1,6 +1,7 @@
 package edu.nick.cursach.controller.web;
 
 import edu.nick.cursach.form.MasterForm;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.Chief;
 import edu.nick.cursach.model.Master;
 import edu.nick.cursach.model.Route;
@@ -25,10 +26,45 @@ public class MasterWEBController {
     @Autowired
     MasterServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("masters", service.getAll());
         return "masterList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<Master> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("masters", list);
+        return "masterList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order){
+
+        List<Master> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<Master> sortedList = service.sortedByLastName(list, order);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("masters", sortedList);
+        return "masterList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm, @PathVariable("order") String order){
+        searchWord = searchForm.getString();
+        List<Master> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/master/list" : "masterList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("masters", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")

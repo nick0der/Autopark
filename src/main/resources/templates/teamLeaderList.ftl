@@ -9,11 +9,24 @@
 <body>
 <h3>Team Leader List</h3>
 <div>
+    <fieldset>
+        <legend>Find team leader</legend>
+        <form name="search" action="" method="POST">
+            Last name:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
+            <th>Last Name
+                <a href="/web/teamLeader/list/sorted/acs" type="button">↓</a>
+                <a href="/web/teamLeader/list/sorted/desc" type="button">↑</a>
+            </th>
             <th>First Name</th>
-            <th>Last Name</th>
             <th>Patronymic</th>
             <th>Salary</th>
             <th>Experience (years)</th>
@@ -24,18 +37,18 @@
         <#list teamLeaders as teamLeader>
             <tr>
                 <td>${teamLeader.id}</td>
-                <td>${teamLeader.firstName}</td>
                 <td>${teamLeader.lastName}</td>
+                <td>${teamLeader.firstName}</td>
                 <td>${teamLeader.patronymic}</td>
                 <td>${teamLeader.salary}</td>
                 <td>${teamLeader.experience}</td>
                 <td>${(teamLeader.master.getFullName())!"null"}</td>
-                <td><a href="edit/${teamLeader.id}"><button>Edit</button></a></td>
-                <td><a href="delete/${teamLeader.id}"><button>Delete</button></a></td>
+                <td><a href="/web/teamLeader/edit/${teamLeader.id}"><button>Edit</button></a></td>
+                <td><a href="/web/teamLeader/delete/${teamLeader.id}"><button>Delete</button></a></td>
             </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/teamLeader/create"><button>Create</button></a>
 </div>
 </body>
 </html>

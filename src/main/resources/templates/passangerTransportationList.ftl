@@ -9,10 +9,23 @@
 <body>
 <h3>Passanger Transportation List</h3>
 <div>
+    <fieldset>
+        <legend>Find transportation</legend>
+        <form name="search" action="" method="POST">
+            Transport:<@spring.formInput "searchForm.string" "" "text"/>
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </fieldset>
+</div>
+<div>
     <table border="3", bgcolor="f0f8ff", class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Date Transported</th>
+            <th>Date Transported
+                <a href="/web/passangerTransportation/list/sorted/acs" type="button">↓</a>
+                <a href="/web/passangerTransportation/list/sorted/desc" type="button">↑</a>
+            </th>
             <th>Transport</th>
             <th>Number of Passangers</th>
             <th>Edit</th>
@@ -24,12 +37,12 @@
             <td>${passangerTransportation.dateTransported}</td>
             <td>${(passangerTransportation.transport.getBrandAndTrackNumber())!"null"}</td>
             <td>${passangerTransportation.numberOfPassangers}</td>
-            <td><a href="edit/${passangerTransportation.id}"><button>Edit</button></a></td>
-            <td><a href="delete/${passangerTransportation.id}"><button>Delete</button></a></td>
+            <td><a href="/web/passangerTransportation/edit/${passangerTransportation.id}"><button>Edit</button></a></td>
+            <td><a href="/web/passangerTransportation/delete/${passangerTransportation.id}"><button>Delete</button></a></td>
         </tr>
         </#list>
     </table>
-    <a href="create"><button>Create</button></a>
+    <a href="/web/passangerTransportation/create"><button>Create</button></a>
 </div>
 </body>
 </html>

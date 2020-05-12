@@ -1,6 +1,7 @@
 package edu.nick.cursach.controller.web;
 
 import edu.nick.cursach.form.ChiefForm;
+import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.Chief;
 import edu.nick.cursach.service.Chief.impls.ChiefServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/web/chief")
@@ -19,10 +18,45 @@ public class ChiefWEBController {
     @Autowired
     ChiefServiceImpl service;
 
-    @RequestMapping("/list")
+    private String searchWord = "";
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getAll(Model model){
+        searchWord = "";
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
         model.addAttribute("chiefs", service.getAll());
         return "chiefList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        searchWord = searchForm.getString();
+        List<Chief> list = service.search(searchWord);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("chiefs", list);
+        return "chiefList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.GET)
+    String getSorted(Model model, @PathVariable("order") String order){
+
+        List<Chief> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        List<Chief> sortedList = service.sortedByLastName(list, order);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("chiefs", sortedList);
+        return "chiefList";
+    }
+
+    @RequestMapping(value = "/list/sorted/{order}", method = RequestMethod.POST)
+    String searchSorted(Model model, @ModelAttribute("searchForm") SearchForm searchForm, @PathVariable("order") String order){
+        searchWord = searchForm.getString();
+        List<Chief> list = searchWord.equals("") ? service.getAll() : service.search(searchWord);
+        String toReturn = searchWord.equals("") ? "redirect:/web/chief/list" : "chiefList";
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("chiefs", list);
+        return toReturn;
     }
 
     @RequestMapping("/delete/{id}")
