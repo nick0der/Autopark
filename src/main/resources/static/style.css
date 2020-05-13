@@ -1,0 +1,43 @@
+*{
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: black;
+}
+
+header{
+  font-size: 35px;
+  font-weight: 600;
+  padding: 10px 0;
+}
+p{
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.car-img{
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.container{
+  color: white;
+}
+
+.welcome{
+  /* border: solid red 1px; */
+  width: 950px;
+  text-align: center;
+  position: absolute;
+  top:  90%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: #dbdbdb;
+  font-size: 45px;
+}

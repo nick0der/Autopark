@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/table.css" />
+    <script src="/js/sortingTable.js"></script>
 </head>
 <body>
 <h3>Added Transport List</h3>
@@ -22,9 +24,12 @@
     <table id="myTable">
         <tr>
             <th>ID</th>
-            <th>Date Added
-                <a href="/web/addedTransport/list/sorted/acs" type="button">↓</a>
-                <a href="/web/addedTransport/list/sorted/desc" type="button">↑</a>
+            <th>
+                <div class="sort-block">
+                Date Added
+                    <div onclick="sortTableAZ(1)" id="down">↓</div>
+                    <div onclick="sortTableZA(1)" id="up">↑</div>
+                </div>
             </th>
             <th>Brand</th>
             <th>Info</th>
@@ -44,29 +49,5 @@
     </table>
     <a href="/web/addedTransport/create"><button>Create</button></a>
 </div>
-<style>
-    #myTable {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    #myTable td, #myTable th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    #myTable tr:nth-child(even){background-color: #f2f2f2;}
-
-    #myTable tr:hover {background-color: #ddd;}
-
-    #myTable th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #2a72de;
-        color: white;
-    }
-</style>
 </body>
 </html>

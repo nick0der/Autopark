@@ -5,6 +5,7 @@ import edu.nick.cursach.form.SearchForm;
 import edu.nick.cursach.model.AddedTransport;
 import edu.nick.cursach.service.AddedTransport.impls.AddedTransportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,8 @@ public class AddedTransportWEBController {
 
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
+        //TODO delete
+        HttpSecurity http;
         searchWord = searchForm.getString();
         List<AddedTransport> list = service.search(searchWord);
         model.addAttribute("searchForm", searchForm);
@@ -81,7 +84,7 @@ public class AddedTransportWEBController {
     String create(Model model, @ModelAttribute("addedTransportForm") AddedTransportForm addedTransportForm){
 
         AddedTransport addedTransport = new AddedTransport();
-
+        System.out.println(addedTransportForm.getBrand());
         addedTransport.setName("name");
         addedTransport.setDescription("description");
         addedTransport.setDateAdded(LocalDate.parse(addedTransportForm.getDateAdded()));
