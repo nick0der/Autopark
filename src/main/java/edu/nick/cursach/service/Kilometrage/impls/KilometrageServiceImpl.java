@@ -38,6 +38,7 @@ public class KilometrageServiceImpl implements IKilometrageService {
 
     @Override
     public Kilometrage edit(Kilometrage kilometrage) {
+        kilometrage.setDateCreated(repository.findById(kilometrage.getId()).orElse(null).getDateCreated());
         kilometrage.setDateModified(LocalDateTime.now());
         return repository.save(kilometrage);
     }

@@ -39,6 +39,7 @@ public class TaxiServiceImpl implements ITaxiService {
 
     @Override
     public Taxi edit(Taxi taxi) {
+        taxi.setDateCreated(repository.findById(taxi.getId()).orElse(null).getDateCreated());
         taxi.setDateModified(LocalDateTime.now());
         return repository.save(taxi);
     }

@@ -39,6 +39,7 @@ public class AncillaryTransportServiceImpl implements IAncillaryTransportService
 
     @Override
     public AncillaryTransport edit(AncillaryTransport ancillaryTransport) {
+        ancillaryTransport.setDateCreated(repository.findById(ancillaryTransport.getId()).orElse(null).getDateCreated());
         ancillaryTransport.setDateModified(LocalDateTime.now());
         return repository.save(ancillaryTransport);
     }

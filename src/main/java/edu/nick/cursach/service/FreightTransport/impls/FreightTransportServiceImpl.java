@@ -39,6 +39,7 @@ public class FreightTransportServiceImpl implements IFreightTransportService {
 
     @Override
     public FreightTransport edit(FreightTransport freightTransport) {
+        freightTransport.setDateCreated(repository.findById(freightTransport.getId()).orElse(null).getDateCreated());
         freightTransport.setDateModified(LocalDateTime.now());
         return repository.save(freightTransport);
     }

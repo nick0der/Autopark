@@ -37,6 +37,7 @@ public class ChiefServiceImpl implements IChiefService {
 
     @Override
     public Chief edit(Chief chief) {
+        chief.setDateCreated(repository.findById(chief.getId()).orElse(null).getDateCreated());
         chief.setDateModified(LocalDateTime.now());
         return repository.save(chief);
     }

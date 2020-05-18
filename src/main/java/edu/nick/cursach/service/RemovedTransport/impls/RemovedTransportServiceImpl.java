@@ -38,6 +38,7 @@ public class RemovedTransportServiceImpl implements IRemovedTransportService {
 
     @Override
     public RemovedTransport edit(RemovedTransport removedTransport) {
+        removedTransport.setDateCreated(repository.findById(removedTransport.getId()).orElse(null).getDateCreated());
         removedTransport.setDateModified(LocalDateTime.now());
         return repository.save(removedTransport);
     }

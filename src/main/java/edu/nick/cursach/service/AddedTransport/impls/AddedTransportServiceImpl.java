@@ -37,6 +37,7 @@ public class AddedTransportServiceImpl implements IAddedTransportService {
 
     @Override
     public AddedTransport edit(AddedTransport addedTransport) {
+        addedTransport.setDateCreated(repository.findById(addedTransport.getId()).orElse(null).getDateCreated());
         addedTransport.setDateModified(LocalDateTime.now());
         return repository.save(addedTransport);
     }

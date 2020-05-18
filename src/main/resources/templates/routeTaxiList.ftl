@@ -4,51 +4,182 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="/table_responsive_v1/images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/table_responsive_v1/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/table_responsive_v1/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/table_responsive_v1/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="/table_responsive_v1/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/table_responsive_v1/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/table_responsive_v1/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/table_responsive_v1/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/table.css">
+    <link rel="stylesheet" type="text/css" href="/css/search.css">
+    <link rel="stylesheet" type="text/css" href="/css/menubar.css">
+    <script src="/table_responsive_v1/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="js/menubar.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="/table_responsive_v1/vendor/bootstrap/js/popper.js"></script>
+    <script src="/table_responsive_v1/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/table_responsive_v1/vendor/select2/select2.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/sortingTable.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="/js/edt-dlt.js"></script>
 </head>
 <body>
-<h3>Route Taxi List</h3>
-<div>
-    <fieldset>
-        <legend>Find route taxi</legend>
-        <form name="search" action="" method="POST">
-            Brand:<@spring.formInput "searchForm.string" "" "text"/>
-            <br>
-            <input type="submit" value="Search"/>
-        </form>
-    </fieldset>
+<nav>
+    <div class="logo">AutoPark</div>
+    <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+    </label>
+    <input type="checkbox" id="btn">
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <label for="btn-1" class="show">Transport</label>
+            <a href="">Transport</a>
+            <input type="checkbox" id="btn-1">
+            <ul id="first-list">
+                <li><a href="/web/ancillaryTransport/list">Ancillary transport</a></li>
+                <li><a href="/web/bus/list">Bus</a></li>
+                <li><a href="/web/freightTransport/list">Freight transport</a></li>
+                <li><a href="/web/routeTaxi/list">Route taxi</a></li>
+                <li><a href="/web/taxi/list">Taxi</a></li>
+            </ul>
+        </li>
+        <li>
+            <label for="btn-2" class="show">Person</label>
+            <a href="">Person</a>
+            <input type="checkbox" id="btn-2">
+            <ul id="second-list">
+                <li><a href="/web/chief/list">Chief</a></li>
+                <li><a href="/web/driver/list">Driver</a></li>
+                <li><a href="/web/master/list">Master</a></li>
+                <li><a href="/web/teamLeader/list">Team leader</a></li>
+                <li><a href="/web/worker/list">Worker</a></li>
+            </ul>
+        </li>
+        <li>
+            <label for="btn-3" class="show">Report</label>
+            <a href="">Report</a>
+            <input type="checkbox" id="btn-3">
+            <ul id="third-list">
+                <li><a href="/web/addedTransport/list">Added transport</a></li>
+                <li><a href="/web/removedTransport/list">Removed transport</a></li>
+                <li><a href="/web/kilometrage/list">Kilometrage</a></li>
+                <li><a href="/web/passangerTransportation/list">Passanger transportation</a></li>
+                <li><a href="/web/transportation/list">Freight transportation</a></li>
+                <li><a href="/web/repair/list">Repair</a></li>
+                <li><a href="/web/usageOfAncillaryTransport/list">Usage of anc. transport</a></li>
+            </ul>
+        </li>
+        <li>
+            <label for="btn-4" class="show">Other</label>
+            <a href="">Other</a>
+            <input type="checkbox" id="btn-4">
+            <ul id="fourth-list">
+                <li><a href="/web/route/list">Route</a></li>
+                <li><a href="/web/storageObj/list">Storage object</a></li>
+                <li><a href="/web/workingTeam/list">Brigade</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="second-header">
+    <div class="form-group has-search" id="search-block" style="left: 230px;">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input class="form-control" type="text" placeholder="Search.." aria-label="Search" id="searchForm" onkeyup="search()">
+    </div>
+    <div class="add-button">
+        <a href="/web/routeTaxi/create"><p>Add a new record</p></a>
+    </div>
+    <div class="title-class"><a href="/web/routeTaxi/list">Route Taxi</a></div>
 </div>
 <div>
-    <table border="3", bgcolor="f0f8ff", class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <th>Brand
-                <a href="/web/routeTaxi/list/sorted/acs" type="button">↓</a>
-                <a href="/web/routeTaxi/list/sorted/desc" type="button">↑</a>
-            </th>
-            <th>Seating Capacity</th>
-            <th>№</th>
-            <th>Route</th>
-            <th>Storage Object</th>
-            <th>Track Number</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        <#list routeTaxis as routeTaxi>
-        <tr>
-            <td>${routeTaxi.id}</td>
-            <td>${routeTaxi.brand}</td>
-            <td>${routeTaxi.seatingCapacity}</td>
-            <td>${routeTaxi.number}</td>
-            <td> ${(routeTaxi.route.getFullTitle())!"null"}</td>
-            <td> ${(routeTaxi.storageObj.getNumber())!"null"}</td>
-            <td> ${(routeTaxi.trackNumber)!"null"}</td>
-            <td><a href="/web/routeTaxi/edit/${routeTaxi.id}"><button>Edit</button></a></td>
-            <td><a href="/web/routeTaxi/delete/${routeTaxi.id}"><button>Delete</button></a></td>
-        </tr>
-        </#list>
-    </table>
-    <a href="/web/routeTaxi/create"><button>Create</button></a>
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100">
+                    <table id="myTable">
+                        <thead>
+                        <tr class="table100-head">
+                            <th class="column-l" style="width: 200px;">
+                                <div class="with-sort">
+                                    <div class="sort-text">Brand</div>
+                                    <div class="sort-block">
+                                        <div><img onclick="sortTableZA(0)" id="up0" src="/img/sortarrows/arrowupoff.png"></div>
+                                        <div><img onclick="sortTableAZ(0)" id="down0" src="/img/sortarrows/arrowdownoff.png"></div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="width: 90px;">
+                                <div class="with-sort">
+                                    <div class="sort-text">Seats</div>
+                                    <div class="sort-block">
+                                        <div><img onclick="sortTableZA(1)" id="up1" src="/img/sortarrows/arrowupoff.png"></div>
+                                        <div><img onclick="sortTableAZ(1)" id="down1" src="/img/sortarrows/arrowdownoff.png"></div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="width: 90px;">
+                                <div class="with-sort">
+                                    <div class="sort-text">Number</div>
+                                    <div class="sort-block">
+                                        <div><img onclick="sortTableZA(2)" id="up2" src="/img/sortarrows/arrowupoff.png"></div>
+                                        <div><img onclick="sortTableAZ(2)" id="down2" src="/img/sortarrows/arrowdownoff.png"></div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="width: 205px;">
+                                <div class="with-sort">
+                                    <div class="sort-text">Route</div>
+                                    <div class="sort-block">
+                                        <div><img onclick="sortTableZA(3)" id="up3" src="/img/sortarrows/arrowupoff.png"></div>
+                                        <div><img onclick="sortTableAZ(3)" id="down3" src="/img/sortarrows/arrowdownoff.png"></div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="width: 90px;">
+                                <div class="with-sort">
+                                    <div class="sort-text">Garage</div>
+                                    <div class="sort-block">
+                                        <div><img onclick="sortTableZA(4)" id="up4" src="/img/sortarrows/arrowupoff.png"></div>
+                                        <div><img onclick="sortTableAZ(4)" id="down4" src="/img/sortarrows/arrowdownoff.png"></div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="width: 135px;">
+                                <div class="with-sort">
+                                    <div class="sort-text">Track №</div>
+                                    <div class="sort-block">
+                                        <div><img onclick="sortTableZA(5)" id="up5" src="/img/sortarrows/arrowupoff.png"></div>
+                                        <div><img onclick="sortTableAZ(5)" id="down5" src="/img/sortarrows/arrowdownoff.png"></div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="text-align: center; width: 65px">Edit</th>
+                            <th style="text-align: center; width: 65px" class="column-r">Delete</th>
+                        </tr>
+                        </thead>
+                        <#list routeTaxis as routeTaxi>
+                            <tr>
+                                <td class="column-l" style="width: 200px;">${routeTaxi.brand}</td>
+                                <td style="width: 90px;">${routeTaxi.seatingCapacity}</td>
+                                <td style="width: 90px;">№ ${routeTaxi.number}</td>
+                                <td style="width: 205px;">${routeTaxi.route.getFullTitle()}</td>
+                                <td style="width: 90px;"> №${routeTaxi.storageObj.getNumber()}</td>
+                                <td style="width: 135px;">${routeTaxi.trackNumber}</td>
+                                <td style="text-align: center; width: 65px"><a href="/web/routeTaxi/edit/${routeTaxi.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
+                                <td style="text-align: center; width: 65px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/routeTaxi/delete/${routeTaxi.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
+                            </tr>
+                        </#list>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

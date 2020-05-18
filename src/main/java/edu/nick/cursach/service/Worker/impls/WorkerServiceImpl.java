@@ -37,6 +37,7 @@ public class WorkerServiceImpl implements IWorkerService {
 
     @Override
     public Worker edit(Worker worker) {
+        worker.setDateCreated(repository.findById(worker.getId()).orElse(null).getDateCreated());
         worker.setDateModified(LocalDateTime.now());
         return repository.save(worker);
     }

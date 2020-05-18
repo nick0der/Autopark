@@ -37,6 +37,7 @@ public class DriverServiceImpl implements IDriverService {
 
     @Override
     public Driver edit(Driver driver) {
+        driver.setDateCreated(repository.findById(driver.getId()).orElse(null).getDateCreated());
         driver.setDateModified(LocalDateTime.now());
         return repository.save(driver);
     }

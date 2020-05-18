@@ -37,6 +37,7 @@ public class UsageOfAncillaryTransportServiceImpl implements IUsageOfAncillaryTr
 
     @Override
     public UsageOfAncillaryTransport edit(UsageOfAncillaryTransport usageOfAncillaryTransport) {
+        usageOfAncillaryTransport.setDateCreated(repository.findById(usageOfAncillaryTransport.getId()).orElse(null).getDateCreated());
         usageOfAncillaryTransport.setDateModified(LocalDateTime.now());
         return repository.save(usageOfAncillaryTransport);
     }

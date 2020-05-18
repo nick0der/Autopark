@@ -38,6 +38,7 @@ public class RouteServiceImpl implements IRouteService {
 
     @Override
     public Route edit(Route route) {
+        route.setDateCreated(repository.findById(route.getId()).orElse(null).getDateCreated());
         route.setDateModified(LocalDateTime.now());
         return repository.save(route);
     }

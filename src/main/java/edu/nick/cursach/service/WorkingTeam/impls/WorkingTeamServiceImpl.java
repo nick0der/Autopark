@@ -36,6 +36,7 @@ public class WorkingTeamServiceImpl implements IWorkingTeamService {
 
     @Override
     public WorkingTeam edit(WorkingTeam workingTeam) {
+        workingTeam.setDateCreated(repository.findById(workingTeam.getId()).orElse(null).getDateCreated());
         workingTeam.setDateModified(LocalDateTime.now());
         return repository.save(workingTeam);
     }

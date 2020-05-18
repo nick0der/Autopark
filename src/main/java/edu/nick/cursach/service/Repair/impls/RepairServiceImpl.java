@@ -37,6 +37,7 @@ public class RepairServiceImpl implements IRepairService {
 
     @Override
     public Repair edit(Repair repair) {
+        repair.setDateCreated(repository.findById(repair.getId()).orElse(null).getDateCreated());
         repair.setDateModified(LocalDateTime.now());
         return repository.save(repair);
     }

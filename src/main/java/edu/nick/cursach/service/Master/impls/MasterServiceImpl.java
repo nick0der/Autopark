@@ -37,6 +37,7 @@ public class MasterServiceImpl implements IMasterService {
 
     @Override
     public Master edit(Master master) {
+        master.setDateCreated(repository.findById(master.getId()).orElse(null).getDateCreated());
         master.setDateModified(LocalDateTime.now());
         return repository.save(master);
     }

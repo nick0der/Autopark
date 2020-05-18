@@ -34,8 +34,6 @@ public class AddedTransportWEBController {
 
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm){
-        //TODO delete
-        HttpSecurity http;
         searchWord = searchForm.getString();
         List<AddedTransport> list = service.search(searchWord);
         model.addAttribute("searchForm", searchForm);

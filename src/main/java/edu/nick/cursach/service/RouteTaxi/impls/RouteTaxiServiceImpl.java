@@ -39,6 +39,7 @@ public class RouteTaxiServiceImpl implements IRouteTaxiService {
 
     @Override
     public RouteTaxi edit(RouteTaxi routeTaxi) {
+        routeTaxi.setDateCreated(repository.findById(routeTaxi.getId()).orElse(null).getDateCreated());
         routeTaxi.setDateModified(LocalDateTime.now());
         return repository.save(routeTaxi);
     }

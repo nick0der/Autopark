@@ -37,6 +37,7 @@ public class TeamLeaderServiceImpl implements ITeamLeaderService {
 
     @Override
     public TeamLeader edit(TeamLeader teamLeader) {
+        teamLeader.setDateCreated(repository.findById(teamLeader.getId()).orElse(null).getDateCreated());
         teamLeader.setDateModified(LocalDateTime.now());
         return repository.save(teamLeader);
     }

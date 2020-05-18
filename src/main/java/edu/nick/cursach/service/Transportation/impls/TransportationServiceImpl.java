@@ -37,6 +37,7 @@ public class TransportationServiceImpl implements ITransportationService {
 
     @Override
     public Transportation edit(Transportation transportation) {
+        transportation.setDateCreated(repository.findById(transportation.getId()).orElse(null).getDateCreated());
         transportation.setDateModified(LocalDateTime.now());
         return repository.save(transportation);
     }

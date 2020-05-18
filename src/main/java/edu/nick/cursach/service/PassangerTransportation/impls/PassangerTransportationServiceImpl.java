@@ -38,6 +38,7 @@ public class PassangerTransportationServiceImpl implements IPassangerTransportat
 
     @Override
     public PassangerTransportation edit(PassangerTransportation passangerTransportation) {
+        passangerTransportation.setDateCreated(repository.findById(passangerTransportation.getId()).orElse(null).getDateCreated());
         passangerTransportation.setDateModified(LocalDateTime.now());
         return repository.save(passangerTransportation);
     }

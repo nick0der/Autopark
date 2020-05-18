@@ -38,6 +38,7 @@ public class BusServiceImpl implements IBusService {
 
     @Override
     public Bus edit(Bus bus) {
+        bus.setDateCreated(repository.findById(bus.getId()).orElse(null).getDateCreated());
         bus.setDateModified(LocalDateTime.now());
         return repository.save(bus);
     }

@@ -37,6 +37,7 @@ public class StorageObjServiceImpl implements IStorageObjService {
 
     @Override
     public StorageObj edit(StorageObj storageObj) {
+        storageObj.setDateCreated(repository.findById(storageObj.getId()).orElse(null).getDateCreated());
         storageObj.setDateModified(LocalDateTime.now());
         return repository.save(storageObj);
     }
