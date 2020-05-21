@@ -147,10 +147,10 @@
                         </thead>
                         <#list ancillaryTransports as ancillaryTransport>
                             <tr>
-                                <td class="column-l" style="width: 275px;">${ancillaryTransport.brand}</td>
-                                <td style="width: 225px;">${ancillaryTransport.mission}</td>
-                                <td style="width: 175px;">${ancillaryTransport.storageObj.getNumber()}</td>
-                                <td style="width: 125px;">${ancillaryTransport.trackNumber}</td>
+                                <td class="column-l" style="width: 275px;">${(ancillaryTransport.brand)!"null"}</td>
+                                <td style="width: 225px;">${(ancillaryTransport.mission)!"null"}</td>
+                                <td style="width: 175px;">${(ancillaryTransport.storageObj.getNumber())!"null"}</td>
+                                <td style="width: 125px;">${(ancillaryTransport.trackNumber)!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/ancillaryTransport/edit/${ancillaryTransport.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/ancillaryTransport/delete/${ancillaryTransport.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

@@ -138,9 +138,9 @@
                         </thead>
                         <#list passangerTransportations as passangerTransportation>
                             <tr>
-                                <td class="column-l" style="width: 250px">${passangerTransportation.dateTransported}</td>
-                                <td style="width: 250px">${passangerTransportation.transport.getBrandAndTrackNumber()}</td>
-                                <td style="width: 300px">${passangerTransportation.numberOfPassangers}</td>
+                                <td class="column-l" style="width: 250px">${(passangerTransportation.dateTransported)!"null"}</td>
+                                <td style="width: 250px">${(passangerTransportation.transport.getBrandAndTrackNumber())!"null"}</td>
+                                <td style="width: 300px">${(passangerTransportation.numberOfPassangers)!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/passangerTransportation/edit/${passangerTransportation.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/passangerTransportation/delete/${passangerTransportation.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

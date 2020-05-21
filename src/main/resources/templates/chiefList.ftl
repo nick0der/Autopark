@@ -156,11 +156,11 @@
                         </thead>
                         <#list chiefs as chief>
                         <tr>
-                            <td class="column-l" style="width: 210px;">${chief.firstName}</td>
-                            <td style="width: 190px;">${chief.lastName}</td>
-                            <td style="width: 200px;">${chief.patronymic}</td>
-                            <td style="width: 100px;">${chief.salary}$</td>
-                            <td id="exp-s" style="width: 100px;">${chief.experience} years</td>
+                            <td class="column-l" style="width: 210px;">${(chief.firstName)!"null"}</td>
+                            <td style="width: 190px;">${(chief.lastName)!"null"}</td>
+                            <td style="width: 200px;">${(chief.patronymic)!"null"}</td>
+                            <td style="width: 100px;">${(chief.salary)!"null"}$</td>
+                            <td id="exp-s" style="width: 100px;">${(chief.experience)!"null"} years</td>
                             <script>
                                 $(document).ready(function(){
 

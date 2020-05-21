@@ -1,0 +1,90 @@
+body{
+    background: #e8f3ff;
+    background: -webkit-linear-gradient(45deg, #e8f3ff, #e5f6ff);
+    background: -o-linear-gradient(45deg, #e8f3ff, #e5f6ff);
+    background: -moz-linear-gradient(45deg, #e8f3ff, #e5f6ff);
+    background: linear-gradient(45deg, #e8f3ff, #e5f6ff);
+}
+
+#search-block{
+    position: absolute;
+    top: 110px;
+    /*left: 350px;*/
+    width: 300px;
+}
+
+.second-header .add-button a{
+    text-align: center;
+    vertical-align: center;
+    border-radius: 4px;
+    position: absolute;
+    top: 107px;
+    left: 1022px;
+    background: #1b1b1b;
+    color: #fbfbfb;
+    height: 40px;
+    width: 200px;
+}
+
+.second-header .add-button a:hover{
+    color: cyan;
+}
+
+.second-header .add-button a p{
+    font-family: Arial;
+    font-size: 17px;
+    margin-top: 7px;
+}
+
+.title-class{
+    position: absolute;
+    top: 105px;
+    left: 55px;
+    font-family: Arial;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.second-header .title-class a{
+    color: #1b1b1b;
+}
+
+.with-sort{
+    display: flex;
+    height: inherit;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.sort-text{
+    margin-left: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.sort-block{
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.sort-block div img{
+    cursor: pointer;
+}
+
+#myTable th img{
+    width: 12px;
+}
+
+.limiter{
+    margin-top: 75px;
+}
+
+.edt-img{
+    width: 25px;
+}
+
+.dlt-img{
+    width: 29px;
+}

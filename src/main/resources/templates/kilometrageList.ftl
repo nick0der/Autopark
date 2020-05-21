@@ -138,9 +138,9 @@
                         </thead>
                         <#list kilometrages as kilometrage>
                             <tr>
-                                <td class="column-l" style="width: 250px">${kilometrage.dateRecorded}</td>
-                                <td style="width: 250px">${kilometrage.transport.getBrandAndTrackNumber()}</td>
-                                <td style="width: 300px">${kilometrage.kilometers} km</td>
+                                <td class="column-l" style="width: 250px">${(kilometrage.dateRecorded)!"null"}</td>
+                                <td style="width: 250px">${(kilometrage.transport.getBrandAndTrackNumber())!"null"}</td>
+                                <td style="width: 300px">${(kilometrage.kilometers)!"null"} km</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/kilometrage/edit/${kilometrage.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/kilometrage/delete/${kilometrage.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

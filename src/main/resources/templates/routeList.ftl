@@ -138,9 +138,9 @@
                         </thead>
                         <#list routes as route>
                             <tr>
-                                <td class="column-l" style="width: 250px">${route.start}</td>
-                                <td style="width: 250px">${route.finish}</td>
-                                <td style="width: 300px">${route.distance} km</td>
+                                <td class="column-l" style="width: 250px">${(route.start)!"null"}</td>
+                                <td style="width: 250px">${(route.finish)!"null"}</td>
+                                <td style="width: 300px">${(route.distance)!"null"} km</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/route/edit/${route.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/route/delete/${route.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

@@ -156,11 +156,11 @@
                         </thead>
                         <#list freightTransports as freightTransport>
                             <tr>
-                                <td class="column-l" style="width: 250px">${freightTransport.brand}</td>
-                                <td style="width: 150px">${freightTransport.type}</td>
-                                <td style="width: 150px">${freightTransport.loadCapacity} kg</td>
-                                <td style="width: 150px">№ ${freightTransport.storageObj.getNumber()}</td>
-                                <td style="width: 100px">${freightTransport.trackNumber}</td>
+                                <td class="column-l" style="width: 250px">${(freightTransport.brand)!"null"}</td>
+                                <td style="width: 150px">${(freightTransport.type)!"null"}</td>
+                                <td style="width: 150px">${(freightTransport.loadCapacity)!"null"} kg</td>
+                                <td style="width: 150px">№ ${(freightTransport.storageObj.getNumber())!"null"}</td>
+                                <td style="width: 100px">${(freightTransport.trackNumber)!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/freightTransport/edit/${freightTransport.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/freightTransport/delete/${freightTransport.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

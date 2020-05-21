@@ -165,12 +165,12 @@
                         </thead>
                         <#list buses as bus>
                             <tr>
-                                <td class="column-l" style="width: 200px;">${bus.brand}</td>
-                                <td style="width: 90px;">${bus.seatingCapacity}</td>
-                                <td style="width: 125px;">${bus.serviceClass}</td>
-                                <td style="width: 205px;">${bus.route.getFullTitle()}</td>
-                                <td style="width: 90px;">№ ${bus.storageObj.getNumber()}</td>
-                                <td style="width: 100px;">${bus.trackNumber}</td>
+                                <td class="column-l" style="width: 200px;">${(bus.brand)!"null"}</td>
+                                <td style="width: 90px;">${(bus.seatingCapacity)!"null"}</td>
+                                <td style="width: 125px;">${(bus.serviceClass)!"null"}</td>
+                                <td style="width: 205px;">${(bus.route.getFullTitle())!"null"}</td>
+                                <td style="width: 90px;">№ ${(bus.storageObj.getNumber())!"null"}</td>
+                                <td style="width: 100px;">${(bus.trackNumber)!"null"}</td>
                                 <td style="text-align: center; width: 65px"><a href="/web/bus/edit/${bus.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 65px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/bus/delete/${bus.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

@@ -129,8 +129,8 @@
                         </thead>
                         <#list usageOfAncillaryTransports as usageOfAncillaryTransport>
                             <tr>
-                                <td class="column-l" style="width: 250px">${usageOfAncillaryTransport.dateUsed}</td>
-                                <td style="width: 550px">${usageOfAncillaryTransport.ancillaryTransport.getBrandAndTrackNumber()}</td>
+                                <td class="column-l" style="width: 250px">${(usageOfAncillaryTransport.dateUsed)!"null"}</td>
+                                <td style="width: 550px">${(usageOfAncillaryTransport.ancillaryTransport.getBrandAndTrackNumber())!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/usageOfAncillaryTransport/edit/${usageOfAncillaryTransport.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/usageOfAncillaryTransport/delete/${usageOfAncillaryTransport.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

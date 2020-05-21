@@ -183,14 +183,14 @@
                         </thead>
                         <#list repairs as repair>
                             <tr>
-                                <td class="column-l" style="width: 130px">${repair.dateRepaired}</td>
-                                <td style="width: 100px">${repair.transport.getBrandAndTrackNumber()}</td>
-                                <td style="width: 70px">&nbsp;&nbsp;№ ${repair.workingTeam.getNumber()}</td>
-                                <td style="width: 70px">${repair.cost}$</td>
-                                <td style="width: 70px">${repair.engines}</td>
-                                <td style="width: 70px">${repair.transmissions}</td>
-                                <td style="width: 70px">${repair.bridges}</td>
-                                <td style="width: 50px">${repair.chassis}</td>
+                                <td class="column-l" style="width: 130px">${(repair.dateRepaired)!"null"}</td>
+                                <td style="width: 100px">${(repair.transport.getBrandAndTrackNumber())!"null"}</td>
+                                <td style="width: 70px">&nbsp;&nbsp;№ ${(repair.workingTeam.getNumber())!"null"}</td>
+                                <td style="width: 70px">${(repair.cost)!"null"}$</td>
+                                <td style="width: 70px">${(repair.engines)!"null"}</td>
+                                <td style="width: 70px">${(repair.transmissions)!"null"}</td>
+                                <td style="width: 70px">${(repair.bridges)!"null"}</td>
+                                <td style="width: 50px">${(repair.chassis)!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/repair/edit/${repair.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/repair/delete/${repair.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

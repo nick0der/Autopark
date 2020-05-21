@@ -147,10 +147,10 @@
                         </thead>
                         <#list storageObjs as storageObj>
                             <tr>
-                                <td class="column-l" style="width: 170px">${storageObj.number}</td>
-                                <td style="width: 170px">${storageObj.type}</td>
-                                <td style="width: 170px">${storageObj.area} m²</td>
-                                <td style="width: 290px">${storageObj.capacity}</td>
+                                <td class="column-l" style="width: 170px">${(storageObj.number)!"null"}</td>
+                                <td style="width: 170px">${(storageObj.type)!"null"}</td>
+                                <td style="width: 170px">${(storageObj.area)!"null"} m²</td>
+                                <td style="width: 290px">${(storageObj.capacity)!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/storageObj/edit/${storageObj.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/storageObj/delete/${storageObj.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

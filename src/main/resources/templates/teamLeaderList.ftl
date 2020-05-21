@@ -152,7 +152,7 @@
                             </th>
                             <th style="width: 170px">
                                 <div class="with-sort">
-                                    <div class="sort-text">Chief</div>
+                                    <div class="sort-text">Master</div>
                                     <div class="sort-block">
                                         <div><img onclick="sortTableZA(5)" id="up5" src="/img/sortarrows/arrowupoff.png"></div>
                                         <div><img onclick="sortTableAZ(5)" id="down5" src="/img/sortarrows/arrowdownoff.png"></div>
@@ -165,12 +165,12 @@
                         </thead>
                         <#list teamLeaders as teamLeader>
                             <tr>
-                                <td class="column-l" style="width: 160px">${teamLeader.firstName}</td>
-                                <td style="width: 140px">${teamLeader.lastName}</td>
-                                <td style="width: 145px">${teamLeader.patronymic}</td>
-                                <td style="width: 95px">${teamLeader.salary}$</td>
-                                <td id="exp-s" style="width: 90px">${teamLeader.experience} years</td>
-                                <td style="width: 170px">${teamLeader.master.getFullName()}</td>
+                                <td class="column-l" style="width: 160px">${(teamLeader.firstName)!"null"}</td>
+                                <td style="width: 140px">${(teamLeader.lastName)!"null"}</td>
+                                <td style="width: 145px">${(teamLeader.patronymic)!"null"}</td>
+                                <td style="width: 95px">${(teamLeader.salary)!"null"}$</td>
+                                <td id="exp-s" style="width: 90px">${(teamLeader.experience)!"null"} years</td>
+                                <td style="width: 170px">${(teamLeader.master.getFullName())!"null"}</td>
                                 <script>
                                     $(document).ready(function(){
 

@@ -165,12 +165,12 @@
                         </thead>
                         <#list routeTaxis as routeTaxi>
                             <tr>
-                                <td class="column-l" style="width: 200px;">${routeTaxi.brand}</td>
-                                <td style="width: 90px;">${routeTaxi.seatingCapacity}</td>
-                                <td style="width: 90px;">№ ${routeTaxi.number}</td>
-                                <td style="width: 205px;">${routeTaxi.route.getFullTitle()}</td>
-                                <td style="width: 90px;"> №${routeTaxi.storageObj.getNumber()}</td>
-                                <td style="width: 135px;">${routeTaxi.trackNumber}</td>
+                                <td class="column-l" style="width: 200px;">${(routeTaxi.brand)!"null"}</td>
+                                <td style="width: 90px;">${(routeTaxi.seatingCapacity)!"null"}</td>
+                                <td style="width: 90px;">№ ${(routeTaxi.number)!"null"}</td>
+                                <td style="width: 205px;">${(routeTaxi.route.getFullTitle())!"null"}</td>
+                                <td style="width: 90px;"> №${(routeTaxi.storageObj.getNumber())!"null"}</td>
+                                <td style="width: 135px;">${(routeTaxi.trackNumber)!"null"}</td>
                                 <td style="text-align: center; width: 65px"><a href="/web/routeTaxi/edit/${routeTaxi.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 65px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/routeTaxi/delete/${routeTaxi.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

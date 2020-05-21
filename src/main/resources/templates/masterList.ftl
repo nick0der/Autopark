@@ -165,12 +165,12 @@
                         </thead>
                         <#list masters as master>
                             <tr>
-                                <td class="column-l" style="width: 160px">${master.firstName}</td>
-                                <td style="width: 140px">${master.lastName}</td>
-                                <td style="width: 145px">${master.patronymic}</td>
-                                <td style="width: 95px">${master.salary}$</td>
-                                <td id="exp-s" style="width: 90px">${master.experience} years</td>
-                                <td style="width: 170px">${master.chief.getFullName()}</td>
+                                <td class="column-l" style="width: 160px">${(master.firstName)!"null"}</td>
+                                <td style="width: 140px">${(master.lastName)!"null"}</td>
+                                <td style="width: 145px">${(master.patronymic)!"null"}</td>
+                                <td style="width: 95px">${(master.salary)!"null"}$</td>
+                                <td id="exp-s" style="width: 90px">${(master.experience)!"null"} years</td>
+                                <td style="width: 170px">${(master.chief.getFullName())!"null"}</td>
                                 <script>
                                     $(document).ready(function(){
 

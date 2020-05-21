@@ -165,12 +165,12 @@
                         </thead>
                         <#list drivers as driver>
                             <tr>
-                                <td class="column-l" style="width: 180px;">${driver.firstName}</td>
-                                <td style="width: 160px;">${driver.lastName}</td>
-                                <td style="width: 170px;">${driver.patronymic}</td>
-                                <td style="width: 170px;">${driver.transport.getBrandAndTrackNumber()}</td>
-                                <td style="width: 60px;">${driver.salary}$</td>
-                                <td id="exp-s" style="width: 60px;">${driver.experience} years</td>
+                                <td class="column-l" style="width: 180px;">${(driver.firstName)!"null"}</td>
+                                <td style="width: 160px;">${(driver.lastName)!"null"}</td>
+                                <td style="width: 170px;">${(driver.patronymic)!"null"}</td>
+                                <td style="width: 170px;">${(driver.transport.getBrandAndTrackNumber())!"null"}</td>
+                                <td style="width: 60px;">${(driver.salary)!"null"}$</td>
+                                <td id="exp-s" style="width: 60px;">${(driver.experience)!"null"} years</td>
                                 <script>
                                     $(document).ready(function(){
 

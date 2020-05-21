@@ -156,11 +156,11 @@
                         </thead>
                         <#list taxis as taxi>
                             <tr>
-                                <td class="column-l" style="width: 200px;">${taxi.brand}</td>
-                                <td style="width: 125px;">${taxi.seatingCapacity}</td>
-                                <td style="width: 175px;">${taxi.bodyType}</td>
-                                <td style="width: 135px;">№ ${taxi.storageObj.getNumber()}</td>
-                                <td style="width: 165px;">${taxi.trackNumber}</td>
+                                <td class="column-l" style="width: 200px;">${(taxi.brand)!"null"}</td>
+                                <td style="width: 125px;">${(taxi.seatingCapacity)!"null"}</td>
+                                <td style="width: 175px;">${(taxi.bodyType)!"null"}</td>
+                                <td style="width: 135px;">№ ${(taxi.storageObj.getNumber())!"null"}</td>
+                                <td style="width: 165px;">${(taxi.trackNumber)!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/taxi/edit/${taxi.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/taxi/delete/${taxi.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>

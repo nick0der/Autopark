@@ -138,9 +138,9 @@
                         </thead>
                         <#list addedTransports as addedTransport>
                         <tr>
-                            <td class="column-l" style="width: 250px">${addedTransport.dateAdded}</td>
-                            <td style="width: 250px;">${addedTransport.brand}</td>
-                            <td style="width: 300px">${addedTransport.info}</td>
+                            <td class="column-l" style="width: 250px">${(addedTransport.dateAdded)!"null"}</td>
+                            <td style="width: 250px;">${(addedTransport.brand)!"null"}</td>
+                            <td style="width: 300px">${(addedTransport.info)!"null"}</td>
                             <td style="text-align: center; width: 70px"><a href="/web/addedTransport/edit/${addedTransport.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                             <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/addedTransport/delete/${addedTransport.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                         </tr>

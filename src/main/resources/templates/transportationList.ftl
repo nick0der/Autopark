@@ -138,9 +138,9 @@
                         </thead>
                         <#list transportations as transportation>
                             <tr>
-                                <td class="column-l" style="width: 250px">${transportation.dateTransported}</td>
-                                <td style="width: 250px">${transportation.freightTransport.getBrandAndTrackNumber()}</td>
-                                <td style="width: 300px">${transportation.weight} kg</td>
+                                <td class="column-l" style="width: 250px">${(transportation.dateTransported)!"null"}</td>
+                                <td style="width: 250px">${(transportation.freightTransport.getBrandAndTrackNumber())!"null"}</td>
+                                <td style="width: 300px">${(transportation.weight)!"null"} kg</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/transportation/edit/${transportation.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/transportation/delete/${transportation.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>
@@ -153,10 +153,3 @@
 </div>
 </body>
 </html>
-
-
-
-
-<#--            <td>${transportation.dateTransported}</td>-->
-<#--            <td> ${(transportation.freightTransport.getBrandAndTrackNumber())!"null"}</td>-->
-<#--            <td>${transportation.weight}</td>-->

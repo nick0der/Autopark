@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: #e8f3ff;
+    background: -webkit-linear-gradient(45deg, #e8f3ff, #e5f6ff);
+    background: -o-linear-gradient(45deg, #e8f3ff, #e5f6ff);
+    background: -moz-linear-gradient(45deg, #e8f3ff, #e5f6ff);
+    background: linear-gradient(45deg, #e8f3ff, #e5f6ff);
+}
+
+form input{
+    display: inline;
+}

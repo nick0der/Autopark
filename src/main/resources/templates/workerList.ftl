@@ -174,13 +174,13 @@
                         </thead>
                         <#list workers as worker>
                             <tr>
-                                <td class="column-l" style="width: -webkit-max-content">${worker.firstName}</td>
-                                <td style="width: -webkit-max-content">${worker.lastName}</td>
-                                <td style="width: -webkit-max-content">${worker.patronymic}</td>
-                                <td style="width: -webkit-max-content">${worker.speciality}</td>
-                                <td style="width: -webkit-max-content">${worker.salary}$</td>
-                                <td id="exp-s" style="width: -webkit-max-content">${worker.experience} years</td>
-                                <td style="width: 0px">№ ${worker.workingTeam.getNumber()}</td>
+                                <td class="column-l" style="width: max-content">${(worker.firstName)!"null"}</td>
+                                <td style="width: max-content">${(worker.lastName)!"null"}</td>
+                                <td style="width: max-content">${(worker.patronymic)!"null"}</td>
+                                <td style="width: max-content">${(worker.speciality)!"null"}</td>
+                                <td style="width: max-content">${(worker.salary)!"null"}$</td>
+                                <td id="exp-s" style="width: max-content">${(worker.experience)!"null"} years</td>
+                                <td style="width: 0px">№ ${(worker.workingTeam.getNumber())!"null"}</td>
                                 <script>
                                     $(document).ready(function(){
                                         for (i = 1; i < (document.getElementById("myTable").rows.length); i++) {
