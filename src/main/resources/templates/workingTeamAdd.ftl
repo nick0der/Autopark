@@ -76,7 +76,7 @@
     <div class="form-input" style="height: 265px">
         <div class="input-header">
             <a href="/web/workingTeam/list"><img src="/img/arrowback.png" width="35px" style="margin-top: 9px"></a>
-            <div>Working Team</div>
+            <div>Brigade</div>
         </div>
         <form name="workingTeam" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">

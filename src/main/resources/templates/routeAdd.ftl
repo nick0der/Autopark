@@ -72,7 +72,7 @@
     </ul>
 </nav>
 <div class="wrapper">
-    <div class="form-input" style="height: 520px">
+    <div class="form-input" style="height: 325px">
         <div class="input-header">
             <a href="/web/route/list"><img src="/img/arrowback.png" width="35px" style="margin-top: 9px"></a>
             <div>Route</div>
