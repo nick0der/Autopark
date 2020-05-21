@@ -141,6 +141,15 @@
                                     </div>
                                 </div>
                             </th>
+                            <th style="width: 290px">
+                                <div class="with-sort">
+                                    <div class="sort-text">Chief</div>
+                                    <div class="sort-block">
+                                        <div><img onclick="sortTableZA(4)" id="up4" src="/img/sortarrows/arrowupoff.png"></div>
+                                        <div><img onclick="sortTableAZ(4)" id="down4" src="/img/sortarrows/arrowdownoff.png"></div>
+                                    </div>
+                                </div>
+                            </th>
                             <th style="text-align: center; width: 70px">Edit</th>
                             <th style="text-align: center; width: 70px" class="column-r">Delete</th>
                         </tr>
@@ -151,6 +160,7 @@
                                 <td style="width: 170px">${(storageObj.type)!"null"}</td>
                                 <td style="width: 170px">${(storageObj.area)!"null"} m²</td>
                                 <td style="width: 290px">${(storageObj.capacity)!"null"}</td>
+                                <td style="width: 290px">${(storageObj.chief.getFullName())!"null"}</td>
                                 <td style="text-align: center; width: 70px"><a href="/web/storageObj/edit/${storageObj.id}"><img class="edt-img" src="/img/edt-dlt/edit.png"></a></td>
                                 <td style="text-align: center; width: 70px" class="column-r"><a onclick="return confirm('Are you sure want to delete? Its impossible to recover the data!')" href="/web/storageObj/delete/${storageObj.id}"><img class="dlt-img" src="/img/edt-dlt/delete.png"></a></td>
                             </tr>
