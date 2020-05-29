@@ -80,7 +80,7 @@
         </div>
         <form name="usageOfAncillaryTransport" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">
-                <div>Date used:</div><input id="datepicker" type="text" class="datepicker-class" required name="dateAddedName" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"/>
+                <div>Date used:</div><input id="datepicker" type="text" class="datepicker-class" required name="dateAddedName" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" title="yyyy-mm-dd"/>
                 <script src="/js/datepicker.js"></script>
             </div>
             <div class="form-row">

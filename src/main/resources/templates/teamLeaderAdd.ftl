@@ -80,15 +80,15 @@
         </div>
         <form name="teamLeader" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">
-                <div>First name:</div><@spring.formInput "teamLeaderForm.firstName" "required pattern='[A-Za-z]{1,32}'" "text"/>
+                <div>First name:</div><@spring.formInput "teamLeaderForm.firstName" "required pattern='^[A-Z]{1}[a-z]{2,32}' title='example: Name'" "text"/>
                 <br>
             </div>
             <div class="form-row">
-                <div>Last name:</div><@spring.formInput "teamLeaderForm.lastName" "required pattern='[A-Za-z]{1,32}'" "text"/>
+                <div>Last name:</div><@spring.formInput "teamLeaderForm.lastName" "required pattern='^[A-Z]{1}[a-z]{2,32}' title='example: Surname'" "text"/>
                 <br>
             </div>
             <div class="form-row">
-                <div>Patronymic:</div><@spring.formInput "teamLeaderForm.patronymic" "required pattern='[A-Za-z]{1,32}'" "text"/>
+                <div>Patronymic:</div><@spring.formInput "teamLeaderForm.patronymic" "required pattern='^[A-Z]{1}[a-z]{2,32}' title='example: Patromynic'" "text"/>
                 <br>
             </div>
             <div class="form-row">

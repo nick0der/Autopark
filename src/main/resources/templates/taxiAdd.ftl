@@ -80,11 +80,11 @@
         </div>
         <form name="taxi" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">
-                <div>Brand:</div><@spring.formInput "taxiForm.brand" "required" "text"/>
+                <div>Brand:</div><@spring.formInput "taxiForm.brand" "required minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <div class="form-row">
-                <div>Seating capacity:</div><@spring.formInput "taxiForm.seatingCapacity" "required min='0' max-'1000'" "number"/>
+                <div>Seating capacity:</div><@spring.formInput "taxiForm.seatingCapacity" "required min='0' max='1000'" "number"/>
                 <br>
             </div>
             <div class="form-row">

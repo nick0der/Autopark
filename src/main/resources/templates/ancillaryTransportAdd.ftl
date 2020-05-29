@@ -80,11 +80,11 @@
         </div>
         <form name="ancillaryTransport" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">
-                <div>Brand:</div><@spring.formInput "ancillaryTransportForm.brand" "required" "text"/>
+                <div>Brand:</div><@spring.formInput "ancillaryTransportForm.brand" "required minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <div class="form-row">
-                <div>Mission:</div><@spring.formInput "ancillaryTransportForm.mission" "required" "text"/>
+                <div>Mission:</div><@spring.formInput "ancillaryTransportForm.mission" "required minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <div class="form-row">

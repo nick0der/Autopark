@@ -80,15 +80,15 @@
         </div>
         <form name="removedTransport" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">
-                <div>Date removed:</div><input id="datepicker" type="text" class="datepicker-class" required name="dateAddedName" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"/>
+                <div>Date removed:</div><input id="datepicker" type="text" class="datepicker-class" required name="dateAddedName" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" title="yyyy-mm-dd"/>
                 <script src="/js/datepicker.js"></script>
             </div>
             <div class="form-row">
-                <div>Transport brand:</div><@spring.formInput "removedTransportForm.brand" "required" "text"/>
+                <div>Transport brand:</div><@spring.formInput "removedTransportForm.brand" "required minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <div class="form-row">
-                <div>Transport info:</div><@spring.formInput "removedTransportForm.info" "required" "text"/>
+                <div>Transport info:</div><@spring.formInput "removedTransportForm.info" "required minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <@spring.formInput "removedTransportForm.dateRemoved" "required style='display:none'" "text"/>

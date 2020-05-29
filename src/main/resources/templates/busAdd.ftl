@@ -80,7 +80,7 @@
         </div>
         <form name="bus" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">
-                <div>Brand:</div><@spring.formInput "busForm.brand" "required" "text"/>
+                <div>Brand:</div><@spring.formInput "busForm.brand" "required minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <div class="form-row">

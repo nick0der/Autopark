@@ -79,11 +79,11 @@
         </div>
         <form name="route" action="" method="POST" id="form" autocomplete="off">
             <div class="form-row">
-                <div>Start:</div><@spring.formInput "routeForm.start" "required pattern='[A-Za-z]{1,32}'" "text"/>
+                <div>Start:</div><@spring.formInput "routeForm.start" "required pattern='^[A-Za-z -]+$' minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <div class="form-row">
-                <div>Finish:</div><@spring.formInput "routeForm.finish" "required pattern='[A-Za-z]{1,32}'" "text"/>
+                <div>Finish:</div><@spring.formInput "routeForm.finish" "required pattern='^[A-Za-z -]+$' minlength=2 maxlength=32" "text"/>
                 <br>
             </div>
             <div class="form-row">
